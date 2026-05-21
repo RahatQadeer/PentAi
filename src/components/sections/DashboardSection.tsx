@@ -36,19 +36,19 @@ export function DashboardSection() {
         style={{ gap: figma.space.gap36 }}
       >
         <div
-          className="relative z-[1] flex w-full max-w-[1024px] flex-col items-center text-center"
+          className="dashboard-intro-copy relative z-[1] flex w-full max-w-[1024px] flex-col items-center text-center"
           style={{ gap: copy.gap }}
         >
-          <h2 className="m-0 w-full max-w-[640px] pb-0 type-5xl-semibold leading-none text-gradient-primary">
+          <h2 className="dashboard-intro-heading m-0 w-full max-w-[640px] pb-0 type-5xl-semibold leading-none text-gradient-primary">
             Lorem ipsum dolor sit amet consectetur.
           </h2>
-          <p className="m-0 w-full max-w-[640px] type-lg-medium text-text-contrast">
+          <p className="dashboard-intro-body m-0 w-full max-w-[640px] type-lg-medium text-text-contrast">
             Lorem ipsum dolor sit amet consectetur. Lacus aliquet vitae nulla
           </p>
         </div>
 
         <div
-          className="relative mx-auto w-full overflow-visible"
+          className="dashboard-frame-wrap relative mx-auto w-full overflow-visible"
           style={{
             maxWidth: d.displayWidth,
             aspectRatio: `${d.displayWidth} / ${d.displayHeight}`,

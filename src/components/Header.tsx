@@ -64,7 +64,7 @@ export function Header() {
       )}
     >
       <div
-        className="site-header-bar relative mx-auto flex w-full max-w-[1280px] items-center justify-between backdrop-blur-[4px]"
+        className="site-header-bar relative mx-auto flex w-full max-w-[1280px] max-lg:mx-0 max-lg:mt-0 max-lg:max-w-full max-lg:rounded-none items-center justify-between backdrop-blur-[4px]"
         style={{
           ...headerVars,
           height: h.height,
@@ -152,6 +152,15 @@ export function Header() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="#"
+                  className="site-header-drawer-link site-header-drawer-link--dashboard type-header-nav block w-full rounded-[10px] px-4 py-3 text-center text-text-contrast transition-colors"
+                  onClick={closeMenu}
+                >
+                  Dashboard
+                </Link>
+              </li>
             </ul>
           </nav>
         </>

@@ -105,7 +105,7 @@ export function Testimonials() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
+        <div className="testimonials-mobile-grid lg:hidden">
           {testimonials.map((item) => (
             <TestimonialCard
               key={item.name}

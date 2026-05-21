@@ -15,15 +15,19 @@ export default function Home() {
   return (
     <main className="relative mx-auto w-full max-w-[1440px] overflow-x-hidden bg-bg-subtle">
       <div className="hero-supporters-bridge relative w-full">
+        {/* Same gradient stack as web — covers hero + supporters (not clipped to hero only) */}
         <AngularGradient priority />
 
-        <div className="hero-content-layer">
-          <div className="hero-bg-frame mx-auto flex w-full flex-col items-center">
-            <Header />
+        <div className="mobile-hero-panel relative w-full lg:contents">
+          <div className="hero-content-layer">
+            <div className="hero-bg-frame mx-auto flex w-full flex-col items-center">
+              <Header />
+            </div>
+            <Hero />
           </div>
-          <Hero />
-          <Supporters />
         </div>
+
+        <Supporters />
       </div>
 
       <DashboardSection />

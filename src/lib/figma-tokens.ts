@@ -190,6 +190,39 @@ export const figma = {
         opacity: 0.9,
       },
     },
+    /**
+     * Hero on ≤1023px — proportional to Figma 1:811–816 (768px column @ 1440 frame).
+     * Typography scales from content width; spacing tuned for mobile header + safe area.
+     */
+    heroMobile: {
+      paddingY: { top: 56, bottom: 48 },
+      stackGap: 32,
+      copyGap: 12,
+      heading: {
+        fontSize: 36,
+        fontWeight: 700,
+        lineHeight: 1.05,
+        letterSpacing: "0.005em",
+      },
+      body: {
+        fontSize: 18,
+        fontWeight: 400,
+        lineHeight: 26,
+        letterSpacing: "0.005em",
+      },
+      cta: {
+        height: 44,
+        paddingX: 24,
+        fontSize: 15,
+        lineHeight: 20,
+      },
+    },
+    /** Figma 1:817 scaled — space below hero before Our Supporters (mobile) */
+    supportersMobile: {
+      paddingTop: 80,
+      paddingBottom: 72,
+      gap: 36,
+    },
     /** Figma 1:808 layout_DTWTV2 — Angular gradient 1st version export */
     heroGradient: {
       left: 0,

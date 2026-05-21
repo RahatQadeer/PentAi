@@ -240,10 +240,11 @@ body {
     position: sticky;
     top: 0;
     z-index: 50;
-    padding-top: max(12px, env(safe-area-inset-top, 0px));
-    padding-right: 16px !important;
+    margin: 0 !important;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-right: 0 !important;
     padding-bottom: 12px;
-    padding-left: 16px !important;
+    padding-left: 0 !important;
     background: transparent;
   }
 
@@ -254,8 +255,10 @@ body {
   .site-header-bar {
     height: auto !important;
     min-height: 52px;
+    max-width: 100% !important;
+    margin: 0 !important;
     padding: 10px 14px;
-    border-radius: 14px;
+    border-radius: 0 !important;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(32, 32, 32, 0.88);
     backdrop-filter: blur(16px) saturate(1.15);
@@ -1354,8 +1357,8 @@ body {
 
 @media (max-width: 1023px) {
   .testimonials-section {
-    padding-left: 32px !important;
-    padding-right: 32px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 }
 
@@ -1623,8 +1626,8 @@ body {
   .site-footer {
     padding-top: 48px !important;
     padding-bottom: 40px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
@@ -2360,18 +2363,22 @@ body {
 
   /* —— Hero — scaled type + spacing for mobile —— */
   .hero-section {
-    padding-top: clamp(48px, 11vw, 72px) !important;
-    padding-bottom: clamp(20px, 5vw, 36px) !important;
+    padding-top: clamp(20px, 5vw, 32px) !important;
+    padding-bottom: 0 !important;
     padding-left: 16px;
     padding-right: 16px;
   }
 
   .hero-section-inner {
     position: relative;
-    z-index: 3;
-    max-width: min(768px, 100%);
-    gap: clamp(22px, 5.5vw, 32px);
+    z-index: 12;
     isolation: isolate;
+    gap: clamp(20px, 5vw, 28px);
+    max-width: min(768px, 100%);
+    width: 100%;
+    margin-bottom: 0;
+    flex: 0 0 auto;
+    align-items: center;
   }
 
   .hero-copy-block {
@@ -2380,21 +2387,23 @@ body {
 
   .hero-heading.type-6xl-bold {
     font-size: clamp(28px, 7vw, 36px);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   .hero-subcopy.type-2xl-regular {
-    font-size: clamp(16px, 4vw, 19px);
-    line-height: 1.45;
-    max-width: 34ch;
+    font-size: clamp(16px, 4vw, 18px);
+    line-height: 1.5;
+    max-width: 32ch;
     margin-inline: auto;
+    color: rgba(236, 237, 238, 0.92);
   }
 
   .hero-cta,
   .hero-section .hero-cta {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     height: 42px;
     min-height: 42px;
     padding-left: 22px;
@@ -2404,241 +2413,214 @@ body {
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     filter: none !important;
-    drop-shadow: none !important;
     text-shadow: none;
     outline: none;
   }
 
-  /* —— Angular / hero gradient — fill bridge, no broken bands —— */
+  .hero-cta::after,
+  .hero-section .hero-cta::after {
+    display: none;
+  }
+
+  /*
+   * Mobile hero + supporters — same bridge gradient as web (not a fake top shadow).
+   * AngularGradient sits on .hero-supporters-bridge; supporters stays transparent.
+   */
   .hero-supporters-bridge {
     overflow: hidden;
+    background-color: #1c1c1c;
   }
 
-  .hero-background-root,
-  .angular-gradient-root {
-    position: absolute;
-    inset: 0;
+  .hero-supporters-bridge > .angular-gradient-root {
     left: 0;
-    right: 0;
     width: 100%;
     max-width: 100%;
-    height: 100%;
-    min-height: 100%;
+    height: 1180px;
     transform: none;
-    overflow: hidden;
   }
 
-  .angular-gradient-image,
-  .hero-angular-image {
-    position: absolute;
-    inset: 0;
+  .hero-supporters-bridge .angular-gradient-image,
+  .hero-supporters-bridge .hero-angular-image {
     left: 0;
     top: 0;
     width: 100%;
-    min-width: 100%;
-    max-width: none;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 100%;
     object-fit: cover;
     object-position: center top;
-    transform: none;
-    filter: blur(0.5px) saturate(1.08);
-    opacity: 1;
+    transform: scale(1.015);
+    transform-origin: 50% 20%;
   }
 
-  .hero-angular-soften {
-    position: absolute;
-    inset: auto 0 auto 0;
-    top: 0;
+  .hero-supporters-bridge .hero-angular-soften {
     left: 0;
+    top: 0;
     width: 100%;
     max-width: 100%;
-    height: 58%;
-    transform: none;
-    background: radial-gradient(
-      ellipse 110% 80% at 50% 28%,
-      rgba(67, 33, 85, 0.18) 0%,
-      rgba(121, 56, 178, 0.06) 38%,
-      transparent 68%
-    );
+    height: min(920px, 85%);
   }
 
-  .angular-gradient-frame,
-  .hero-angular-frame {
-    position: absolute;
-    inset: 0;
+  .hero-supporters-bridge .angular-gradient-frame,
+  .hero-supporters-bridge .hero-angular-frame {
     left: 0 !important;
     top: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     height: 100% !important;
     transform: none !important;
-    overflow: hidden;
   }
 
-  .hero-blur-soft-mid,
-  .hero-blur-soft-deep,
-  .hero-blur-grey-spot,
-  .hero-vignette,
-  .hero-blend-overlay {
-    display: none !important;
+  .hero-supporters-bridge .hero-blur-soft-mid {
+    left: -10%;
+    top: 4%;
+    width: 120%;
+    height: 42%;
   }
 
-  .angular-gradient-root,
-  .hero-background-root {
-    -webkit-mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 48%,
-      rgba(0, 0, 0, 0.85) 58%,
-      rgba(0, 0, 0, 0.45) 68%,
-      rgba(0, 0, 0, 0.12) 78%,
-      transparent 88%
-    );
-    mask-image: linear-gradient(
-      180deg,
-      #000 0%,
-      #000 48%,
-      rgba(0, 0, 0, 0.85) 58%,
-      rgba(0, 0, 0, 0.45) 68%,
-      rgba(0, 0, 0, 0.12) 78%,
-      transparent 88%
-    );
+  .hero-supporters-bridge .hero-blur-soft-deep {
+    left: -16%;
+    top: 52%;
+    width: 132%;
+    height: 38%;
   }
 
-  /* Bottom fade — kept low so it does not shadow the hero CTA */
-  .hero-supporters-bridge::after {
-    height: clamp(64px, 14vw, 100px);
-    background:
-      radial-gradient(
-        ellipse 90% 70% at 50% 100%,
-        rgba(67, 33, 85, 0.06) 0%,
-        transparent 68%
-      ),
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        rgba(28, 28, 28, 0.08) 55%,
-        rgba(28, 28, 28, 0.22) 100%
-      );
+  .hero-supporters-bridge .hero-blur-grey-spot {
+    left: 50%;
+    top: 50%;
+    width: min(82%, 420px);
+    height: clamp(72px, 18vw, 152px);
+    transform: translateX(-50%);
   }
 
-  /* —— Supporters — Figma 1:817 spacing scaled from 1440 frame —— */
-  .supporters-section {
+  .hero-supporters-bridge .hero-vignette {
+    left: 0;
+    top: -80px;
     width: 100%;
     max-width: 100%;
-    /* 130/1440≈9.03vw, 128/1440≈8.89vw, 47/1440≈3.26vw */
-    padding-top: clamp(72px, 9.03vw, 130px);
-    padding-bottom: clamp(71px, 8.89vw, 128px);
-    padding-left: clamp(10px, 0.69vw, 10px);
-    padding-right: clamp(10px, 0.69vw, 10px);
-    gap: clamp(28px, 3.26vw, 47px);
+    height: 120%;
+    transform: none;
+  }
+
+  .mobile-hero-panel {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .hero-content-layer {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+
+  .hero-section {
+    padding-top: clamp(20px, 5vw, 32px) !important;
+    padding-bottom: clamp(28px, 7vw, 40px) !important;
+  }
+
+  .hero-section::after {
+    display: none;
+  }
+
+  .hero-section-inner {
+    margin-bottom: 0;
+  }
+
+  .hero-cta {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 10px;
+  }
+
+  /* Our Supporters — flat bg; soft shadow only at top center (mobile) */
+  .supporters-section {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0 !important;
+    padding-top: clamp(56px, 14vw, 80px) !important;
+    padding-bottom: clamp(48px, 12vw, 72px) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    gap: clamp(24px, 6vw, 36px) !important;
+    background: #1c1c1c !important;
+    overflow: hidden;
     box-sizing: border-box;
+    box-shadow: none;
+  }
+
+  .supporters-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    width: min(68%, 300px);
+    height: clamp(72px, 20vw, 110px);
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse 100% 100% at 50% 0%,
+      rgba(121, 56, 178, 0.18) 0%,
+      rgba(67, 33, 85, 0.1) 40%,
+      transparent 72%
+    );
+  }
+
+  .supporters-section::after {
+    display: none;
+    content: none;
   }
 
   .supporters-title {
-    padding-inline: 0;
-    font-size: var(--supporters-title-size, 24px);
-    line-height: var(--supporters-title-line, 32px);
+    position: relative;
+    z-index: 2;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: clamp(20px, 5.2vw, 24px);
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0.005em;
+    text-align: center;
+    text-wrap: balance;
+    color: #ecedee;
   }
 
   .supporters-logos-row {
+    position: relative;
+    z-index: 2;
     width: 100%;
-    max-width: min(var(--supporters-logos-width, 1280px), 100%);
+    max-width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
-    gap: clamp(24px, 3.125vw, 45px);
-    row-gap: clamp(24px, 3.125vw, 45px);
+    gap: clamp(18px, 4.5vw, 28px);
+    row-gap: clamp(18px, 4.5vw, 28px);
     padding-inline: 0;
   }
 
   .supporters-logo-item {
-    flex: 0 1 auto;
-    font-size: var(--supporters-logo-size, 20px);
-    line-height: var(--supporters-logo-line, 28px);
-    max-width: 100%;
-  }
-
-  /* Top gradient shadow into supporters + bottom fade under logos */
-  .supporters-section::before,
-  .supporters-section::after {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Top gradient shadow — Our Supporters only (mobile) */
-  .supporters-section::before {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    width: 100%;
-    height: clamp(160px, 40vw, 240px);
-    background:
-      radial-gradient(
-        ellipse 100% 100% at 50% 0%,
-        rgba(121, 56, 178, 0.3) 0%,
-        rgba(67, 33, 85, 0.16) 35%,
-        rgba(34, 21, 39, 0.06) 55%,
-        transparent 82%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(28, 28, 28, 0.42) 0%,
-        rgba(28, 28, 28, 0.16) 42%,
-        transparent 100%
-      );
-  }
-
-  .supporters-section::after {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 50%;
-    background:
-      radial-gradient(
-        ellipse 40% 90% at 0% 100%,
-        #1c1c1c 0%,
-        rgba(28, 28, 28, 0.5) 36%,
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 40% 90% at 100% 100%,
-        #1c1c1c 0%,
-        rgba(28, 28, 28, 0.5) 36%,
-        transparent 70%
-      ),
-      linear-gradient(
-        180deg,
-        transparent 0%,
-        rgba(28, 28, 28, 0.08) 48%,
-        rgba(28, 28, 28, 0.28) 76%,
-        rgba(28, 28, 28, 0.4) 100%
-      );
-  }
-
-  .supporters-title,
-  .supporters-logos-row {
-    position: relative;
-    z-index: 1;
+    font-size: clamp(16px, 4vw, 20px);
+    line-height: 28px;
+    color: #ffffff;
   }
 
   .supporters-logos-row::after {
     content: "";
     position: absolute;
-    top: -140%;
+    top: 0;
     right: 0;
-    bottom: -35%;
-    width: clamp(48px, 22vw, 96px);
+    bottom: 0;
+    width: clamp(40px, 14vw, 72px);
     z-index: 0;
     pointer-events: none;
     background: linear-gradient(
       270deg,
       #1c1c1c 0%,
-      rgba(28, 28, 28, 0.82) 22%,
-      rgba(28, 28, 28, 0.28) 52%,
+      rgba(28, 28, 28, 0.78) 30%,
       transparent 100%
     );
   }
@@ -2646,8 +2628,10 @@ body {
   /* —— Dashboard —— */
   .dashboard-section {
     overflow-x: clip;
-    padding-left: 32px !important;
-    padding-right: 32px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
     box-sizing: border-box;
   }
 
@@ -2699,20 +2683,25 @@ body {
     line-height: 1.45;
   }
 
-  /* —— Stats — narrower cards via larger side margin on mobile —— */
+  /* —— Stats — stack cards, same side gutter as hero —— */
   .stats-section {
-    padding-left: 40px !important;
-    padding-right: 40px !important;
+    padding-top: clamp(28px, 7vw, 40px) !important;
+    padding-bottom: clamp(40px, 10vw, 56px) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 
   .stats-section-inner {
     width: 100%;
     max-width: 1024px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     padding-inline: 0;
     box-sizing: border-box;
   }
 
   .stats-section-heading.type-5xl-semibold {
+    margin-top: 0 !important;
     font-size: clamp(24px, 6vw, 32px);
     line-height: 1.15;
     padding-inline: 0;
@@ -2727,8 +2716,14 @@ body {
 
   .stat-card {
     width: 100%;
-    max-width: min(317.333px, calc(100vw - 96px));
+    max-width: min(317.333px, 100%);
     margin-inline: auto;
+  }
+
+  .stat-cards-row {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(24px, 6vw, 36px);
   }
 
   .stat-card-description {
@@ -2754,8 +2749,8 @@ body {
     overflow-x: clip;
     padding-top: 48px;
     padding-bottom: 48px;
-    padding-left: 32px !important;
-    padding-right: 32px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 
   .security-heading {
@@ -2816,7 +2811,7 @@ body {
   .features-showcase-text-block {
     width: 100%;
     max-width: 100%;
-    padding-left: 40px;
+    padding-left: 0;
     padding-right: 0;
     align-items: flex-start;
     text-align: left;
@@ -3008,9 +3003,9 @@ body {
 
   /* —— CTA — one bowl: curves fill lower card, copy layered on top (same as web) —— */
   .cta-section {
-    --cta-page-margin-x: 32px;
-    padding-left: 32px;
-    padding-right: 32px;
+    --cta-page-margin-x: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
     overflow-x: clip;
   }
 
@@ -3057,16 +3052,27 @@ body {
 
   /* —— Testimonials —— */
   .testimonials-section {
-    padding-left: 32px !important;
-    padding-right: 32px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
     overflow-x: clip;
+  }
+
+  .testimonials-section .type-5xl-semibold {
+    font-size: clamp(24px, 6vw, 32px);
+    line-height: 1.15;
+    padding-inline: 0;
   }
 
   /* —— Feature tabs —— */
   .features-tabs-section {
-    padding-inline: 32px !important;
+    padding-top: 0 !important;
+    padding-inline: 16px !important;
     overflow-x: clip;
     box-sizing: border-box;
+  }
+
+  .features-tabs-inner > .type-5xl-semibold {
+    margin-top: 0 !important;
   }
 
   .features-tabs-inner {
@@ -3084,6 +3090,24 @@ body {
 
   .features-tabs-list {
     width: 100%;
+    gap: 24px;
+  }
+
+  .features-tabs-item {
+    flex: 0 0 auto;
+  }
+
+  .features-tabs-item > button {
+    min-height: auto !important;
+    height: auto !important;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .features-tabs-item .feature-tab-desc {
+    display: block !important;
   }
 
   .features-tabs-media {
@@ -3097,9 +3121,197 @@ body {
     font-size: 13px;
     line-height: 19px;
   }
+
+  .hero-bg-frame {
+    padding-top: 0;
+    padding-bottom: 8px;
+  }
+
+  .supporters-title {
+    max-width: 28ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .dashboard-section {
+    gap: 32px !important;
+  }
+
+  .dashboard-frame {
+    border-radius: 10px;
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .dashboard-preview-image {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .stats-section-inner {
+    gap: clamp(24px, 6vw, 36px) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .stat-card-inner {
+    height: clamp(180px, 52vw, 200px);
+    padding: 24px 20px;
+  }
+
+  .stat-card-description {
+    font-size: clamp(14px, 3.6vw, 15px);
+    line-height: 1.45;
+  }
+
+  .security-section-wrap {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .security-row {
+    gap: 28px;
+  }
+
+  .security-copy {
+    gap: 18px;
+  }
+
+  .security-lock-wrap {
+    width: min(220px, 58vw);
+    aspect-ratio: 286 / 249;
+    height: auto;
+  }
+
+  .security-lock {
+    width: 100%;
+    height: 100%;
+    min-height: 160px;
+  }
+
+  .security-cards-mobile {
+    margin-top: 4px;
+  }
+
+  .security-card--mobile:active .security-card-inner {
+    background: #2e2e2e;
+  }
+
+  .features-showcase-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .features-showcase-grid {
+    padding-bottom: 8px;
+  }
+
+  .features-tabs-section {
+    padding-top: 0 !important;
+    padding-bottom: 48px !important;
+  }
+
+  .features-tabs-inner > .type-5xl-semibold {
+    margin-top: 0 !important;
+    font-size: clamp(24px, 6vw, 32px);
+    line-height: 1.15;
+    max-width: 22ch;
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+
+  .features-tabs-row {
+    flex-direction: column;
+  }
+
+  .features-tabs-media {
+    order: -1;
+    border-radius: 14px;
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .features-tabs-list {
+    order: 1;
+    gap: 24px;
+  }
+
+  .features-tabs-item > button.bg-bg-hover {
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .feature-tab-title {
+    font-size: clamp(16px, 4.2vw, 18px);
+    line-height: 1.35;
+  }
+
+  .testimonials-section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  .testimonials-mobile-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .testimonials-mobile-grid .testimonial-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 16px;
+  }
+
+  .cta-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .cta-heading {
+    font-size: clamp(26px, 6.5vw, 34px) !important;
+    line-height: 1.12 !important;
+    text-wrap: balance;
+  }
+
+  .cta-body {
+    font-size: clamp(15px, 3.8vw, 17px) !important;
+    line-height: 1.5 !important;
+    text-wrap: pretty;
+  }
+
+  .cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .cta-content .cta-button,
+  .cta-content button {
+    width: 100%;
+    max-width: 280px;
+    min-height: 44px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
 }
 
 @media (min-width: 1024px) {
+  .security-cards-mobile {
+    display: none !important;
+  }
+
   .features-showcase-footer {
     margin-top: -48px;
   }
@@ -3147,17 +3359,26 @@ body {
 }
 
 @media (max-width: 767px) {
+  .hero-supporters-bridge {
+    min-height: 0;
+  }
+
+  .hero-supporters-bridge::after {
+    height: clamp(72px, 18vw, 120px);
+  }
+
   .site-header {
-    padding-top: max(10px, env(safe-area-inset-top, 0px));
-    padding-right: 14px !important;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-right: 0 !important;
     padding-bottom: 10px;
-    padding-left: 14px !important;
+    padding-left: 0 !important;
   }
 
   .site-header-bar {
     min-height: 48px;
+    margin: 0 !important;
     padding: 8px 12px;
-    border-radius: 12px;
+    border-radius: 0 !important;
   }
 
   .site-header-logo {
@@ -3175,12 +3396,17 @@ body {
   }
 
   .hero-section {
-    padding-top: clamp(36px, 10vw, 52px) !important;
-    padding-bottom: 18px !important;
+    isolation: isolate;
+    padding-top: clamp(16px, 4vw, 24px) !important;
   }
 
   .hero-section-inner {
-    gap: 20px;
+    gap: clamp(18px, 4.5vw, 24px);
+  }
+
+  .supporters-section {
+    padding-bottom: clamp(48px, 12vw, 72px) !important;
+    gap: clamp(20px, 5vw, 36px) !important;
   }
 
   .hero-heading.type-6xl-bold {
@@ -3197,39 +3423,50 @@ body {
   .hero-cta,
   .hero-section .hero-cta {
     width: 100%;
-    max-width: 280px;
+    max-width: 300px;
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
-    filter: none !important;
   }
 
-  .stats-section {
-    padding-left: 52px !important;
-    padding-right: 52px !important;
+  .supporters-logos-row {
+    gap: 20px 28px;
+    row-gap: 20px;
+  }
+
+  .supporters-logo-item {
+    font-size: clamp(16px, 4.2vw, 18px);
+  }
+
+  .security-cards-mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .security-card--mobile {
+    min-height: 136px;
+  }
+
+  .security-card--mobile .security-card-inner {
+    min-height: 136px;
+    padding: 12px 8px 14px;
+  }
+
+  .testimonials-mobile-grid {
+    gap: 12px;
+  }
+
+  .testimonials-mobile-grid .testimonial-card {
+    padding: 18px !important;
+  }
+
+  .cta-card {
+    min-height: 360px;
+    padding: 36px 14px 28px;
+    border-radius: 20px;
   }
 
   .stat-card {
-    max-width: min(300px, calc(100vw - 112px));
-  }
-
-  .features-tabs-section {
-    padding-inline: 40px !important;
-  }
-
-  .security-section-wrap {
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-  }
-
-  .testimonials-section {
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-  }
-
-  .cta-section {
-    --cta-page-margin-x: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
+    max-width: 100%;
   }
 
   .cta-card {
@@ -3241,25 +3478,8 @@ body {
     top: 20%;
   }
 
-  .dashboard-section {
-    padding-left: 40px !important;
-    padding-right: 40px !important;
-  }
-
-  .hero-supporters-bridge::after {
-    height: clamp(140px, 32vw, 220px);
-  }
-
-  .supporters-section::before {
-    height: clamp(140px, 38vw, 200px);
-  }
-
-  .supporters-section::after {
-    height: 55%;
-  }
-
   .supporters-logos-row::after {
-    width: clamp(56px, 26vw, 108px);
+    width: clamp(36px, 16vw, 64px);
   }
 
   .features-showcase-section {
@@ -3267,10 +3487,6 @@ body {
     --features-heading-size: clamp(22px, 5.8vw, 26px);
     --features-check-size: 14px;
     --features-check-lh: 21px;
-  }
-
-  .features-showcase-text-block {
-    padding-left: 52px;
   }
 
   .features-showcase-grid {
@@ -3296,7 +3512,7 @@ body {
   }
 
   .features-showcase-footer {
-    margin-top: -12px;
+    margin-top: -39px;
   }
 
   .features-showcase-decor::before,
